@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+class bill{
+    private:
+    string name;
+    int unit;
+    float amm=0;
+    public:
+    void setdetails(string n,int u){
+        name=n;
+        unit=u;
+    }
+    int call(){
+        if(unit<=100){
+            amm+=0.60*unit+50;
+        }
+        else if (unit<=300){
+            amm+=0.60*100+(unit-100)*0.80+50;
+        }
+        else{
+            amm+=0.60*100+200*0.80+(unit-300)*0.90+50;
+        }
+        if(amm>300){
+            amm+=amm*0.15;
+        }
+        return amm;
+    }
+    void show(){
+        cout<<"name"<<" "<<name<<endl<<"unit consumed"<<" " <<unit<<endl<<"total ammount"<<"  " <<amm<<endl;
+    }
+};
+int main (){
+int n;
+cout<<"enter the number of the users:";
+cin>>n;
+string name;
+int unit;
+bill b[n];
+for(int i=0;i<n;i++){
+    cout<<"enter the name of the users:";
+    cin>>name;
+    cout<<"enter the number of unnit consumed:";
+    cin>>unit;
+    b[i].setdetails(name,unit);
+}
+for(int i=0;i<n;i++){
+   b[i]. call();
+   b[i].show();
+   cout<<endl;
+}
+return 0;
+}
