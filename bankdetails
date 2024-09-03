@@ -1,0 +1,76 @@
+#include<iostream>
+using namespace std;
+class bank{
+    private:
+    string name;//name of the depositor;
+     int an;//accounnt number;
+    string typeofan;//tupe of account (saving,current);
+    float ammount;// ammount in account;
+    public:
+    void setdetails(string name,int an,string typeofan,float ammount){
+       this-> name=name;
+       this-> an=an;
+        this->typeofan=typeofan;
+        this->ammount=ammount;
+    }
+    int deposite(int de ){
+        ammount=ammount+de;
+        return ammount;
+    }
+    int withdraw(int with){
+        if(with>ammount){
+        cout<<"sorry you can not withdraw";
+    }
+    else{
+        ammount=ammount-with;
+    }
+    return ammount;
+}
+ void display(){
+cout<<"name"<<"   "<<name<<endl<<" balance"<<"  " <<ammount<<endl;
+ }
+};
+int main(){
+int n;
+string name;
+int an;
+string typeofan;
+float accmount;
+cout<<"enter the number of the people:";
+cin>>n;
+bank b[n];
+int w;
+int d;
+for(int i=0;i<n;i++){
+    cout<<" enter the name";
+    cin>>name;
+    cout<<"enter the account number ";
+    cin>>an;
+    cout<<"enter the type of account:";
+    cin>>typeofan;
+    cout<<"enter the ammount:";
+    cin>>accmount;
+    b[i].setdetails(name,an,typeofan,accmount);
+}
+for(int i=0;i<n;i++){
+cout<<"press 1 for deposite"<<endl;
+cout<<"press 2 for withdraw:"<<endl;
+int ch;
+cout<<"enter yourr choice:";
+cin>>ch;
+switch(ch){
+    case 1:
+          cout<<"enter the ammount to be deposite:";
+             cin>>d;
+            b[i]. deposite(d);
+            break;
+case 2:
+      cout<<"enter the ammount to be withdraw:";
+      cin>>w;
+      b[i].withdraw(w);
+      break;
+}
+  b[i]. display();
+}
+return 0;
+}
