@@ -1,0 +1,59 @@
+#include<iostream>
+using namespace std;
+class hotel{
+    private:
+    int room;
+    string name;
+    int tariff;
+    int nod;
+    float amm;
+  int  calculate(){
+    if(nod*tariff>10000){
+        amm+=amm*1.05*nod*tariff;
+    }
+    else{
+        amm+=nod*tariff;
+    }
+    return amm;
+  }
+  public:
+  void checkin(int r,string n,int t,int d){
+    room=r;
+    name=n;
+    tariff=t;
+    nod=d;
+  }
+  void checkout(){
+    cout<<"room  number"<<"  "<<room<<endl<<"name of the cutomer"<<"   "<<name<<endl<<" traiff ammount"<<"   "<<tariff<<endl<<"number of days "<<"  "<<nod<<endl<<"total ammount"<<"  "<<amm<<endl;
+  }
+  int call(){
+  return   calculate();
+  }
+
+};
+int  main(){
+int n;
+cout<<"enter the number of cutomers:";
+cin>>n;
+int room;
+string name;
+int tariff;
+int nod;
+hotel h[n];
+for(int i=0;i<n;i++){
+    cout<<"enter the room number:";
+    cin>>room;
+    cout<<"enter the name :";
+    cin>>name;
+    cout<<"enter the tariff amount:";
+    cin>>tariff;
+    cout<<"enter the number of days";
+    cin>>nod;
+h[i].checkin(room,name,tariff,nod);
+}
+for(int i=0;i<n;i++){
+    h[i].call();
+    h[i].checkout();
+}
+return 0;
+}
