@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+class hotel
+{
+private:
+    int roomno;
+    string name;
+    float tariff;
+    int nod;
+
+    int calculate()
+    {
+        if (nod * tariff > 10000)
+        {
+            return 1.05 * nod * tariff;
+        }
+        else
+        {
+            return nod * tariff;
+        }
+        return 0;
+    }
+
+public:
+    int checkin(int roomno, string name, float tariff, int nod)
+    {
+        roomno = roomno;
+        name = name;
+        tariff = tariff;
+        nod - nod;
+    }
+    int checkout()
+    {
+        cout << roomno << endl;
+        cout << name << endl;
+        cout << tariff << endl;
+        cout << nod << endl;
+    }
+};
+int main()
+{
+    int n;
+    int roomno;
+    string name;
+    float tariff;
+    int nod;
+    cout << "enter the number of people:";
+    cin >> n;
+    cout << "enter the people:";
+    hotel h[n];
+    for (int i = 0; i < n; i++)
+    {
+        cout << "enter the room no:";
+        cin >> roomno;
+        cout << "enter the name:";
+        cin >> name;
+        cout << "enter the tariff:";
+        cin >> tariff;
+        cout << "enter the nod: ";
+        cin >> nod;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        h[i].checkin(roomno, name, tariff, nod);
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << endl
+             << "detail of check out of customer:" << i << " ";
+        h[i].checkout();
+    }
+    return 0;
+}
