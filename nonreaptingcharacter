@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    string s;
+    cout << "enter the string:";
+    cin >> s;
+    int l;
+    l = s.length();
+    for (int i = 0; i < l; i++)
+    {
+        int  flag = false; // printinng all non repeating charcters:
+        for (int j = 0; j < l; j++)
+        {
+            if ((i != j) && s[i] == s[j])
+            {
+                flag    = true;
+                break;
+            }
+        }
+        if (!flag )
+        {
+            cout << s[i];
+        }
+    }
+    return 0;
+}
