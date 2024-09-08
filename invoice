@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+class  invoice{
+private:
+string partNumber;
+string partDescription;
+int quantity;
+double price;
+public:
+invoice(string partNumber,string partDescription,int quantity,double price){
+   this->partNumber=partNumber;
+   this->partDescription=partDescription;
+    this->quantity=quantity;
+   this->price=price;
+}
+void setPartNumber(string partNumber){
+    this->partNumber=partNumber;
+}
+void setPartDescription(string partDescription){
+    this->partDescription=partDescription;
+}
+void setQuantity(int quantity){
+    (quantity>0)?
+     this->quantity=quantity:quantity=0;
+}
+void setPrice(double price){
+    (price>0)?
+     this->price=price:price=0.0;
+}
+double getlnvoiceAmount(){
+    return price*quantity;
+}
+};
+int main (){
+string partNumber,pd,pno;  
+cout<<"enter the part nummber:";
+cin>>partNumber;
+string partDescription;
+cout<<"enter the part description:";
+cin>>partDescription;
+int quantity,qt;
+cout<<"enter the quantity:";
+cin>>quantity;
+double price,p;
+cout<<"enter the price:";
+cin>>price;
+invoice i(partNumber,partDescription,quantity,price);
+cout<<"enter the new part number is:"<<endl;
+cin>>pno;
+i.setPartNumber(pno);
+cout<<"the  new partdescrition"; 
+cin>>pd;
+i.setPartDescription(pd);
+cout<<" the  new quantity is:";
+cin>>qt;
+i.setQuantity(qt);
+cout<<"the new price:";
+cin>>p;
+i.setPrice(p);
+cout<<"part number:"<<pno<<endl;
+cout<<"part description:"<<pd<<endl;
+cout<<"the quantity:"<<qt<<endl;
+cout<<"the price:"<<p<<endl;
+cout<<"total ammount"<<i.getlnvoiceAmount();
+return 0;
+}
