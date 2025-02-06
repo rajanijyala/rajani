@@ -1,0 +1,165 @@
+#include<iostream>
+using namespace std;
+
+class bank {
+private:
+    string userId;
+    int password;
+    int accNo;
+    float balance;
+
+public:
+    bank() {
+        balance = 0.0;
+    }
+
+    void setuserId(string userId) {
+        this->userId = userId;
+    }
+
+    void setpassword(int password) {
+        this->password = password;
+    }
+
+    void setaccNo(int accNo) {
+        this->accNo = accNo;
+    }
+
+    void setbalance(float balance) {
+        this->balance = balance;
+    }
+
+    bool login(string Id, int pass, int ano) {
+        if (userId == Id && password == pass && accNo == ano) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    bool confirm(int confirmPassword) {
+        if (this->password == confirmPassword) {
+            cout << "Account created successfully!" << endl;
+            return true;  
+        }
+        else {
+            cout << "Invalid confirmation password!" << endl;
+            return false; 
+        }
+    }
+
+    float checkbalance() {
+        return balance;
+    }
+
+    float transfer(float amount) {
+        if (balance < amount) {
+            cout << "Not able to transfer. Insufficient balance!" << endl;
+            return -1;
+        }
+        else {
+            balance = balance - amount;
+            return balance;
+        }
+    }
+};
+
+int main() {
+    bank b;
+    string userId;
+    int password;
+    int ch, a_num;
+
+    do {
+        cout << "1. Create account" << endl;
+        cout << "2. Login" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> ch;
+
+        if (ch == 1) {
+            cout << "Welcome to the bank!" << endl;
+            cout << "Create your user Id: ";
+            cin >> userId;
+            b.setuserId(userId);
+
+            cout << "Create your password: ";
+            cin >> password;
+            b.setpassword(password);
+
+            cout << "Enter your account number: ";
+            cin >> a_num;
+            b.setaccNo(a_num);
+
+            int con;
+            cout << "Enter your confirm password: ";
+            cin >> con;
+            if (!b.confirm(con)) {
+                cout << "Account creation failed due to incorrect password confirmation!" << endl;
+                continue; 
+            }
+
+            cout << "Enter the initial balance: ";
+            float balance;
+            cin >> balance;
+            b.setbalance(balance);
+
+            cout << "Account created successfully!" << endl;
+        }
+        else if (ch == 2) {
+            cout << "Enter your user Id: ";
+            cin >> userId;
+            cout << "Enter your password: ";
+            cin >> password;
+            cout << "Enter your account number: ";
+            cin >> a_num;
+
+            if (b.login(userId, password, a_num)) {
+                cout << "Login successful!" << endl;
+                int action;
+                do {
+                    cout << "Choose an action:" << endl;
+                    cout << "1. Check Balance" << endl;
+                    cout << "2. Transfer money" << endl;
+                    cout << "3. Log out" << endl;
+                    cin >> action;
+
+                    switch (action) {
+                        case 1:
+                            cout << "Your current balance is: " << b.checkbalance() << endl;
+                            break;
+
+                        case 2:
+                            cout << "Enter the amount to transfer: ";
+                            float amount;
+                            cin >> amount;
+                            b.transfer(amount);
+                            cout << "Your updated balance is: " << b.checkbalance() << endl;
+                            break;
+
+                        case 3:
+                            cout << "Logging out..." << endl;
+                            break;
+
+                        default:
+                            cout << "Invalid choice! Please try again." << endl;
+                            break;
+                    }
+                } while (action != 3);
+            }
+            else {
+                cout << "Invalid password, account number, or user id!" << endl;
+            }
+        }
+        else if (ch == 3) {
+            cout << "Exiting program..." << endl;
+        }
+        else {
+            cout << "Invalid choice! Try again..." << endl;
+        }
+
+    } while (ch != 3);
+
+    return 0;
+}
